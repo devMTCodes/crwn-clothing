@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from '../utils/firebase/firebase.utils';
+import {
+  onAuthStateChangedListener,
+  createUserDocumentFromAuth,
+} from "../utils/firebase/firebase.utils";
 
 // The Actual Value you want to Access
 export const UserContext = createContext({
@@ -23,8 +26,5 @@ export const UserProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  return <UserContext.Provider value={value}>
-    {children}
-  </UserContext.Provider>
-}
-
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
