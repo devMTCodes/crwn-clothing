@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const BackgroundImage = styled.div`
+// Prevent `imageUrl` from being forwarded to the DOM
+export const BackgroundImage = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "imageUrl",
+})`
   width: 100%;
   height: 100%;
   background-size: cover;
