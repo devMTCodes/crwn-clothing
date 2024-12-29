@@ -30,29 +30,35 @@
 )
 */
 
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
 const selectCategoryReducer = (state) => state.categories;
 
 export const selectCategories = createSelector(
   [selectCategoryReducer], // 1st - what are we trying to get Outputted
   (categoriesSlice) => categoriesSlice.categories // 2nd - Getting categories value from the Slice
-) // The only time this will run is if this categoriesSlice object we get back from selectCategoryReducer is different.
+); // The only time this will run is if this categoriesSlice object we get back from selectCategoryReducer is different.
 // If the Input Value (categories) changes - Only Then - does RESELECT determine a RERUN of this METHOD.
 // If the categories object is always the same in memory (which it will be) then the 2nd will always be the same value.
 
-// Because we did not want to run this .reduce if categories had not changed (to increase performance) 
+// Because we did not want to run this .reduce if categories had not changed (to increase performance)
 
 export const selectCategoriesMap = createSelector(
   [selectCategories], // passing this here momoizes it here and up top.
-  (categories) => categories.reduce((acc, category) => {
-    const { title, items } = category;
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {})
+  (categories) =>
+    categories.reduce((acc, category) => {
+      const { title, items } = category;
+      acc[title.toLowerCase()] = items;
+      return acc;
+    }, {})
 );
-
 
 // Whats Happenening here it...
 // As long as the [categories] Array Does Not Change - Do Not ReRun This Method except Once ((selectcategoriesMap)).reduce
 // Just Give Me Back The Previously Calculated Value.
+
+
+export const selectCatagoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+)
