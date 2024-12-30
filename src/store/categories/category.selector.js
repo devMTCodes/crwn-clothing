@@ -58,7 +58,7 @@ export const selectCategoriesMap = createSelector(
 // Just Give Me Back The Previously Calculated Value.
 
 
-export const selectCatagoriesIsLoading = createSelector(
+export const selectCategoriesIsLoading = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.isLoading
 )
